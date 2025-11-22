@@ -35,10 +35,14 @@ export default function WeatherScreen() {
     fetchKing();
   }, []);
 
-  function postNewKing() {
-    return fetch("hill", {
-      // TODO: Request dataπ
+  async function postNewKing() {
+    const response = await fetch("hill", {
+      method: "POST",
+      body: JSON.stringify({newKing: yourName})
     });
+
+    const typedResponse = await response.json() as Data
+    setParsedData(typedResponse)
   }
 
   return (
