@@ -1,6 +1,6 @@
 'use client';
 
-import {useEffect, useState} from "react";
+import {MouseEventHandler, useEffect, useState} from "react";
 
 const styles = {
   page: {
@@ -35,24 +35,25 @@ export default function WeatherScreen() {
     fetchKing();
   }, []);
 
+  function postNewKing() {
+    return fetch("hill", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        newKing: yourName,
+      })
+    });
+  }
+
   return (
     <div style={styles.page}>
       <main style={styles.main}>
-        {/* TODO: Add your UI code here! You will want to use parsedData. */}
         <p>Current King: <strong>{parsedData?.king}</strong></p>
         <p>Your name:</p>
-        <input onChange={(e) => setYourName(e.target.value)} />
-        <button onClick={event => {
-          fetch("hill", {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              newKing: yourName,
-            })
-          }).then(r => fetchKing())
-        }}>
+        <input onChange={(e) => setYourName(e.target.value)}/>
+        <button onClick={postNewKing}>
           Submit
         </button>
       </main>
