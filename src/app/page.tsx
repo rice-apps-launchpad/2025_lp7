@@ -37,13 +37,7 @@ export default function WeatherScreen() {
 
   function postNewKing() {
     return fetch("hill", {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        newKing: yourName,
-      })
+      // TODO: Request dataπ
     });
   }
 

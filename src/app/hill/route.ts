@@ -6,7 +6,6 @@ let currentKing = "Nobody"
 // —— GET request (client will GET: who is on the hill?) ——
 
 export async function GET() {
-  return Response.json({ king: currentKing })
 }
 
 
@@ -17,7 +16,5 @@ type NewKingPost = {
 }
 
 export async function POST(request: NextRequest) {
-  const res = await request.json() as NewKingPost
-  currentKing = res.newKing
-  return Response.json({ king: currentKing })
+
 }
